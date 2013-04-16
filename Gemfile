@@ -11,7 +11,12 @@ gem 'resque'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :test do
+  gem 'rspec-rails', '~> 2.0'
+end
+
 group :development do
+  gem 'rspec-rails', '~> 2.0'
   gem 'sqlite3'
 end
 
