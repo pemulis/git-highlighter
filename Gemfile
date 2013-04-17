@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-gem 'octokit', '1.24.0'
+gem 'octokit', '~> 1.24.0'
 gem 'unicorn'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'capistrano'
-gem 'resque'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -18,6 +17,7 @@ end
 group :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'sqlite3'
+  gem 'annotate', '2.5.0'
 end
 
 group :production do
