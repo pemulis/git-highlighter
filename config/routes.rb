@@ -1,4 +1,12 @@
 GithubHighlighter::Application.routes.draw do
+  get "users/new"
+
+  get "users/create"
+
+  get "users/update"
+
+  get "users/show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
