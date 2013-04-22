@@ -8,4 +8,6 @@ Nope!
 
 # Anything Else I Should Know? 
 
-All code is released under the MIT License. If you want to add a feature or fix my horrible mistakes, write some code, write some tests, and submit a pull request!
+All code is released under the MIT License. 
+
+If you want to add a feature or fix one of my horrible mistakes, just write some code, write some tests, and submit a pull request.
