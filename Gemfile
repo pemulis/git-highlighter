@@ -6,6 +6,7 @@ gem 'unicorn'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'capistrano'
+gem 'pg'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -16,12 +17,10 @@ end
 
 group :development do
   gem 'rspec-rails', '~> 2.0'
-  gem 'sqlite3'
   gem 'annotate', '2.5.0'
 end
 
 group :production do
-  gem 'pg'
 end
 
 # Gems used only for assets and not required

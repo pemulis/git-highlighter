@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20130420071347) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "login"
     t.integer  "github_id"
     t.string   "avatar_url"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20130420071347) do
     t.integer  "followers"
     t.integer  "following"
     t.string   "html_url"
-    t.datetime "github_profile_created_at", :limit => 255
+    t.string   "github_profile_created_at"
     t.string   "type"
   end
 
