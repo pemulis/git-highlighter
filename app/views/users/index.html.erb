@@ -1,2 +1,7 @@
 <h1>HELLO, CRUEL WORLD</h1>
-<%= link_to "Log into Github and all secrets will be revealed.", controller: "users", action: "new" %>
+<% if @code.nil? %>
+  <%= link_to "Log into Github and all secrets will be revealed.", controller: "users", action: "new" %>
+<% else %>
+  <p>Code: <% @code %></p>
+  <p>Access token: <% @token %></p>
+<% end %>

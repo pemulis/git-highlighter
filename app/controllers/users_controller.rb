@@ -4,13 +4,12 @@ class UsersController < ApplicationController
     @params = Rack::Utils.parse_query URI(@uri).query
     @code = @params["code"]
 
-    if @code.nil?
-      render 
-    else
-      RestClient.post "https://github.com/login/oauth/access_token", client_id: ENV["CLIENT_ID"], client_secret: ENV["CLIENT_SECRET"], code: "#{@code}"
+    unless @code.nil?
+      @token = RestClient.post "https://github.com/login/oauth/access_token", client_id: ENV["CLIENT_ID"], client_secret: ENV["CLIENT_SECRET"], code: "#{@code}"
+      render
 
       # TODO:
-      # * Grab access token from response
+      # X Grab access token from response
       # * Use access token to show correct user
     end
   end
