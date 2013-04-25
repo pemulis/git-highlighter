@@ -1,7 +1,7 @@
 GithubHighlighter::Application.routes.draw do
   root to: 'users#index'
 
-  resources :users, except: [:edit, :update, :destroy]
+  resources :users, except: [:create, :edit, :update, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
