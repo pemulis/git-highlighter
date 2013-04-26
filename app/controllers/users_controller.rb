@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     unless @code.nil?
       
       url = "https://github.com/login/oauth/access_token"
-      resp = RestClient.post url, client_id: ENV["CLIENT_ID"], client_secret: ENV["CLIENT_SECRET"], code: "#{@code}", accept: :json
+      resp = RestClient.post url, client_id: ENV["CLIENT_ID"], client_secret: ENV["CLIENT_SECRET"], code: "#{@code}"
       
       @token = resp 
       # @client = Octokit::Client.new(oauth_token: @token)
