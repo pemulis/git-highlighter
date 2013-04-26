@@ -1,37 +1,14 @@
 class UsersController < ApplicationController
   def index
-    @uri = "http://#{request.host+request.fullpath}"
-    @params = Rack::Utils.parse_query URI(@uri).query
-    @code = @params["code"]
-
-    unless @code.nil?
-      
-      url = "https://github.com/login/oauth/access_token"
-      resp = RestClient.post url, client_id: ENV["CLIENT_ID"], client_secret: ENV["CLIENT_SECRET"], code: "#{@code}"
-      
-      @token = resp 
-      # @client = Octokit::Client.new(oauth_token: @token)
-      # @user = @client.user()
-      # @following = @client.following(@user)
-      @user2 = Octokit.user("pemulis")
-      @following2 = []
-      Octokit.following("pemulis").each do |f|
-        @following << f.login
-      end
-
       # TODO:
-      # X Grab access token from response
-      # * Use access token to show correct user
-    
-    end
-  end
-
-  def new
-    redirect_to "https://github.com/login/oauth/authorize?client_id=#{ENV["CLIENT_ID"]}"
+      #
+      # * Create nonspecific OAuth token for higher API rate limit
+      # * Use username entered to show correct user
   end
 
   def show 
     # TODO:
+    #
     # * Create database entry for user if one does not exist
     # * Get user's followers
     # * Get user's followers' followers

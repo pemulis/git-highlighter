@@ -1,11 +1,10 @@
 <h1>HELLO, CRUEL WORLD</h1>
-<% if @code.nil? %>
-  <%= link_to "Log into Github and all secrets will be revealed.", controller: "users", action: "new" %>
+<% if @user.nil? %>
+  <p>Enter your Github username and all secrets will be revealed.</p>
+  <%= form_tag do %>
+    <%= text_field_tag(:quepasa) %>
+    <%= submit_tag("GOGOGOGOGOGOGO") %>
+  <% end %>
 <% else %>
-  <p>Code: <%= @code %></p>
-  <p>Access token: <%= @token %></p>
-  <p>User: <%= @user %></p>
-  <p>Following: <%= @following %></p>
-  <p>User 2: <%= @user2 %></p>
-  <p>Following 2: <%= @following2 %></p>
+  <%= Do some stuff %>
 <% end %>

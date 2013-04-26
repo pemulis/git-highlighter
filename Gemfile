@@ -7,7 +7,6 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'capistrano'
 gem 'pg'
-gem 'rest-client'
 gem 'figaro'
 
 # Bundle edge Rails instead:
