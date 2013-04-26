@@ -14,7 +14,10 @@ class UsersController < ApplicationController
       # @user = @client.user()
       # @following = @client.following(@user)
       @user2 = Octokit.user("pemulis")
-      @following2 = Octokit.following("pemulis")
+      @following2 = []
+      Octokit.following("pemulis").each do |f|
+        @following << f.login
+      end
 
       # TODO:
       # X Grab access token from response

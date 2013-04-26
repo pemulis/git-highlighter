@@ -34,7 +34,7 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
-    capistrano (2.15.2)
+    capistrano (2.15.3)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
