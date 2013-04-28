@@ -1,6 +1,6 @@
 <h1><span style="background-color: #ff3">GIT HIGHLIGHTER</span></h1>
 <% if @user.login.nil? %>
-  <%= form_for @user, url: { action: "create" } do |f| %>
+  <%= form_for @user do |f| %>
     <%= f.label :login, "Enter your Github username and all secrets will be revealed." %>
     <%= f.text_field :login %>
     <%= f.submit "GOGOGOGOGOGOGO" %>
