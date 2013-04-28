@@ -1,7 +1,8 @@
 GithubHighlighter::Application.routes.draw do
-  root to: 'users#index'
+  root to: 'users#new'
+  match '/show' => 'users#show'
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:new, :create, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

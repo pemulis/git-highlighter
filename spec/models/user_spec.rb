@@ -22,7 +22,7 @@
 #  followers                 :integer
 #  following                 :integer
 #  html_url                  :string(255)
-#  github_profile_created_at :datetime(255)
+#  github_profile_created_at :string(255)
 #  type                      :string(255)
 #
 

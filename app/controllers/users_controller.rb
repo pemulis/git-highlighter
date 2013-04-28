@@ -1,12 +1,17 @@
 class UsersController < ApplicationController
-  def index
-      # TODO:
-      #
-      # * Create nonspecific OAuth token for higher API rate limit
-      # * Use username entered to show correct user
+  def new 
+    @user = User.new
+
+    # TODO:
+    #
+    # * Create nonspecific OAuth token for higher API rate limit
+    # * Use username entered to show correct user
   end
 
-  def show 
+  def create
+  end
+
+  def show
     # TODO:
     #
     # * Create database entry for user if one does not exist
@@ -16,5 +21,6 @@ class UsersController < ApplicationController
     #   make recommendations
     # * Cache results of the analysis
     # * Show cached results if less than 24 hours old 
+    # * NOTE: How much of this should take place in the model?
   end
 end

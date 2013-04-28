@@ -21,8 +21,8 @@
 #  public_gists              :integer
 #  followers                 :integer
 #  following                 :integer
-#  joined_github_date        :string(255)
 #  html_url                  :string(255)
+#  github_profile_created_at :string(255)
 #  type                      :string(255)
 #
 
