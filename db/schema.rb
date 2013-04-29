@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429022007) do
+ActiveRecord::Schema.define(:version => 20130429024117) do
 
   create_table "followed_users", :force => true do |t|
     t.string   "login"
@@ -41,9 +41,11 @@ ActiveRecord::Schema.define(:version => 20130429022007) do
     t.string   "html_url"
     t.string   "github_profile_created_at"
     t.string   "type"
+    t.string   "slug"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+  add_index "users", ["slug"], :name => "index_users_on_slug"
 
   create_table "users_followed_users", :id => false, :force => true do |t|
     t.integer "user_id",          :null => false

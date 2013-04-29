@@ -24,9 +24,13 @@
 #  html_url                  :string(255)
 #  github_profile_created_at :string(255)
 #  type                      :string(255)
+#  slug                      :string(255)
 #
 
 class User < ActiveRecord::Base
   has_many :followed_users, uniq: true
   attr_accessible :login
+
+  extend FriendlyId
+  friendly_id :login, use: :slugged
 end

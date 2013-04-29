@@ -24,6 +24,7 @@
 #  html_url                  :string(255)
 #  github_profile_created_at :string(255)
 #  type                      :string(255)
+#  slug                      :string(255)
 #
 
 require 'spec_helper'
