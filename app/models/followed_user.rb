@@ -9,5 +9,5 @@
 #
 
 class FollowedUser < ActiveRecord::Base
-  belongs_to :users, uniq: true
+  belongs_to :users
 end
