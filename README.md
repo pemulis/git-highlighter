@@ -4,7 +4,9 @@ Git Highlighter shows you repos you might find interesting, based on your social
 
 # Is It Live Yet?
 
-Nope!
+Kind of?
+
+http://git-highlighter.herokuapp.com/
 
 # Anything Else I Should Know? 
 
