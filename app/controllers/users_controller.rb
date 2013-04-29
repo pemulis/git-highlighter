@@ -1,26 +1,35 @@
 class UsersController < ApplicationController
   def new 
     @user = User.new
-
-    # TODO:
-    #
-    # * Create nonspecific OAuth token for higher API rate limit
-    # * Use username entered to show correct user
   end
 
   def create
-  end
+    @user = User.find_or_create_by_login(params[:user][:login])
+    
+    if @user.save
+      redirect_to(@user, 
+                  notice: 'User recommendations created or updated.')
+    else
+      render action: 'new'
+    end
 
-  def show
     # TODO:
     #
+    # * All Github API calls should happen here
     # * Create database entry for user if one does not exist
     # * Get user's followers
     # * Get user's followers' followers
+  end
+
+  def show
+    @user = User.find(params[:id])
+
+    # TODO:
+    #
+    # * User username from #new to show correct user
     # * Analyze 1st and 2nd degree followers' starred repos to 
     #   make recommendations
     # * Cache results of the analysis
     # * Show cached results if less than 24 hours old 
-    # * NOTE: How much of this should take place in the model?
   end
 end
