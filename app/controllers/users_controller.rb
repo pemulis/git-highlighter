@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     get_user_data(@user, @octokit)
 
     @following = Octokit.following(@user.login)
-    get_followed_users(@user, @following) # Figure out how to do this
+    get_followed_users(@user, @following)
     
     if @user.save
       # Add extra check to make sure followed users saved correctly
@@ -78,11 +78,21 @@ class UsersController < ApplicationController
     u.type = o.type
   end
 
-  def get_followed_users(u, f)
+  def get_followed_users(u, a)
     # u - the user object
-    # f - the octokit following object
+    # a - the octokit-generated array of followed user hashes
     #
-    # There should be some code here!
+    a.each do |f|
+      # Add to the FollowedUsers table
+      #
+      @followed = FollowedUser.find_or_create_by_login(f.login)
+      @followed.save
+
+      # Create the association in the FollowedUsersUsers table
+      #
+      @association = u.followed_users
+      @association << @followed unless @association.exists?(@followed) 
+    end
   end
 
 end

@@ -28,7 +28,7 @@
 #
 
 class User < ActiveRecord::Base
-  has_many :followed_users, uniq: true
+  has_and_belongs_to_many :followed_users, uniq: true
   attr_accessible :login
 
   extend FriendlyId

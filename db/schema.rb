@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429024117) do
+ActiveRecord::Schema.define(:version => 20130430060246) do
 
   create_table "followed_users", :force => true do |t|
     t.string   "login"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "followed_users_users", :id => false, :force => true do |t|
+    t.integer "user_id",          :null => false
+    t.integer "followed_user_id", :null => false
+  end
+
+  add_index "followed_users_users", ["user_id", "followed_user_id"], :name => "index_users_followed_users_on_user_id_and_followed_user_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -46,12 +53,5 @@ ActiveRecord::Schema.define(:version => 20130429024117) do
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["slug"], :name => "index_users_on_slug"
-
-  create_table "users_followed_users", :id => false, :force => true do |t|
-    t.integer "user_id",          :null => false
-    t.integer "followed_user_id", :null => false
-  end
-
-  add_index "users_followed_users", ["user_id", "followed_user_id"], :name => "index_users_followed_users_on_user_id_and_followed_user_id", :unique => true
 
 end

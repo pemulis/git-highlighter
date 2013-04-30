@@ -17,4 +17,11 @@
 <h2>Created At:</h2>
 <p><%= @user.github_profile_created_at %></p>
 
+<h2>Following:</h2>
+<ul>
+<% @user.followed_users.each do |f| %>
+  <li><%= f.login %></li>
+<% end %>
+</ul>
+
 <%= link_to 'Someone else?', controller: 'users', action: 'new' %>
