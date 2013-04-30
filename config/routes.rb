@@ -1,6 +1,7 @@
 GithubHighlighter::Application.routes.draw do
   root to: 'users#new'
   match '/show' => 'users#show'
+  match '/:id' => 'users#show'
 
   resources :users, only: [:new, :create, :show]
 
