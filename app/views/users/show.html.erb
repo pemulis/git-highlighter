@@ -8,4 +8,13 @@
 <h2>ID:</h2>
 <p><%= @user.id %></p>
 
+<h2>Location:</h2>
+<p><%= @user.location %></p>
+
+<h2>Hireable:</h2>
+<p><%= @user.hireable %></p>
+
+<h2>Created At:</h2>
+<p><%= @user.github_profile_created_at %></p>
+
 <%= link_to 'Someone else?', controller: 'users', action: 'new' %>
