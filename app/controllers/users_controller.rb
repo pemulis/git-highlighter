@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+  def index
+    @user = User.find_by_login(cookies[:login])
+
+    if @user.nil?
+      redirect_to action: 'new'
+    else
+      render action: 'show'
+    end
+  end
+
   def new 
     @user = User.new
   end
@@ -7,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.find_or_create_by_login(params[:user][:login])
     
     if @user.save
+      cookies[:login] = @user.login
       redirect_to(@user, 
                   notice: 'User recommendations created or updated.')
     else
