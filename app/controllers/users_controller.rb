@@ -22,22 +22,16 @@ class UsersController < ApplicationController
     get_user_data(@user, @octokit)
 
     @following = Octokit.following(@user.login)
+
     get_followed_users(@user, @following)
     
     if @user.save
-      # Add extra check to make sure followed users saved correctly
-      #
       cookies[:login] = @user.login
       redirect_to(@user, 
                   notice: 'User recommendations created or updated.')
     else
       render action: 'new'
     end
-
-    # TODO:
-    #
-    # * Get user's followers
-    # * Get user's followers' followers
   end
 
   def show
@@ -45,8 +39,8 @@ class UsersController < ApplicationController
 
     # TODO:
     #
-    # * Analyze 1st and 2nd degree followers' starred repos to 
-    #   make recommendations
+    # * Analyze followed users' starred repos, as well as the users
+    #   they themselves follow 
     # * Cache results of the analysis
     # * Show cached results if less than 24 hours old 
   end
@@ -79,11 +73,19 @@ class UsersController < ApplicationController
   end
 
   def get_followed_users(u, a)
-    # u - the user object
-    # a - the octokit-generated array of followed user hashes
+    # u - user object
+    # a - octokit-generated array of followed user hashes
     #
     a.each do |f|
-      # Add to the FollowedUsers table
+      # Add 1st-degree followed users to the Users table 
+      # (why not!)
+      #
+      @new_user = User.find_or_create_by_login(f.login)
+      @new_user_octokit = Octokit.user(f.login)
+      get_user_data(@new_user, @new_user_octokit)
+      @new_user.save
+
+      # Add 1st-degree followed users to the FollowedUsers table
       #
       @followed = FollowedUser.find_or_create_by_login(f.login)
       @followed.save

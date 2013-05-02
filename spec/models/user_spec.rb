@@ -16,7 +16,7 @@
 #  location                  :string(255)
 #  email                     :string(255)
 #  hireable                  :boolean
-#  bio                       :string(255)
+#  bio                       :text
 #  public_repos              :integer
 #  public_gists              :integer
 #  followers                 :integer

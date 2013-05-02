@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430060246) do
+ActiveRecord::Schema.define(:version => 20130502081853) do
 
   create_table "followed_users", :force => true do |t|
     t.string   "login"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20130430060246) do
     t.string   "location"
     t.string   "email"
     t.boolean  "hireable"
-    t.string   "bio"
+    t.text     "bio"
     t.integer  "public_repos"
     t.integer  "public_gists"
     t.integer  "followers"
