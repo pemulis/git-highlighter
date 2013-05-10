@@ -9,6 +9,8 @@ gem 'capistrano'
 gem 'pg'
 gem 'figaro'
 gem 'friendly_id', '~> 4.0.9'
+gem 'rest-client'
+gem 'omniauth-github'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

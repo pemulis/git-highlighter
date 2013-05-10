@@ -16,14 +16,27 @@ class UsersController < ApplicationController
   def create
     @user = User.find_or_create_by_login(params[:user][:login])
 
-    # Github API calls incoming!
+    # Take care of OAuth stuff
     #
-    @octokit = Octokit.user(@user.login)
+    if @token.nil?
+      if @code = params[:code]
+        @token = get_oauth_token(@code)
+      else
+        get_code
+      end
+    end
+
+    # Initialize the Octokit client
+    #
+    @client = Octokit::Client.new(login: @user.login, 
+                                  oauth_token: @token)
+
+    @octokit = @client.user(@user.login)
     get_user_data(@user, @octokit)
 
-    @following = Octokit.following(@user.login)
+    @followed = @client.following(@user.login)
 
-    get_followed_users(@user, @following)
+    get_followed_users(@user, @followed, @client)
     
     if @user.save
       cookies[:login] = @user.login
@@ -49,6 +62,17 @@ class UsersController < ApplicationController
 
   # Helper Methods
   #
+  def get_code
+    url = "https://github.com/login/oauth/authorize?client_id=#{ENV['CLIENT_ID']}"
+    redirect_to url and return 
+  end
+
+  def get_oauth_token(code)
+    url = "https://github.com/login/oauth/access_token"
+    resp = RestClient.post url, client_id: ENV["CLIENT_ID"], client_secret: ENV["CLIENT_SECRET"], code: code
+    token = JSON.parse(resp)["access_token"]
+  end
+
   def get_user_data(u, o)
     # u - the user object
     # o - the octokit object
@@ -72,16 +96,17 @@ class UsersController < ApplicationController
     u.type = o.type
   end
 
-  def get_followed_users(u, a)
-    # u - user object
-    # a - octokit-generated array of followed user hashes
+  def get_followed_users(user, array, client)
+    # user - user object
+    # array - octokit-generated array of followed users
+    # client - octokit client
     #
-    a.each do |f|
+    array.each do |f|
       # Add 1st-degree followed users to the Users table 
       # (why not!)
       #
       @new_user = User.find_or_create_by_login(f.login)
-      @new_user_octokit = Octokit.user(f.login)
+      @new_user_octokit = @client.user(f.login)
       get_user_data(@new_user, @new_user_octokit)
       @new_user.save
 
@@ -92,7 +117,7 @@ class UsersController < ApplicationController
 
       # Create the association in the FollowedUsersUsers table
       #
-      @association = u.followed_users
+      @association = user.followed_users
       @association << @followed unless @association.exists?(@followed) 
     end
   end
