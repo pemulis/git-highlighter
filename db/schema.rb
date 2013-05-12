@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502081853) do
+ActiveRecord::Schema.define(:version => 20130512011913) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "followed_users", :force => true do |t|
     t.string   "login"
@@ -49,6 +56,11 @@ ActiveRecord::Schema.define(:version => 20130502081853) do
     t.string   "github_profile_created_at"
     t.string   "type"
     t.string   "slug"
+    t.string   "followers_url"
+    t.string   "following_url"
+    t.string   "starred_url"
+    t.string   "subscriptions_url"
+    t.string   "organizations_url"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

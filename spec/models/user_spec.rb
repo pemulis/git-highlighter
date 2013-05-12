@@ -25,6 +25,11 @@
 #  github_profile_created_at :string(255)
 #  type                      :string(255)
 #  slug                      :string(255)
+#  followers_url             :string(255)
+#  following_url             :string(255)
+#  starred_url               :string(255)
+#  subscriptions_url         :string(255)
+#  organizations_url         :string(255)
 #
 
 require 'spec_helper'
