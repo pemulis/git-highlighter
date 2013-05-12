@@ -34,6 +34,7 @@
 
 class User < ActiveRecord::Base
   has_and_belongs_to_many :followed_users, uniq: true
+  has_and_belongs_to_many :starred_repos, uniq: true
   attr_accessible :login
 
   extend FriendlyId
@@ -76,47 +77,66 @@ class User < ActiveRecord::Base
 
   # Instance Methods (yesss...)
 
-  def get_user_data(client)
+  def get_user_data(client, user=self)
     # Octokit client grabs data from Github
-    o = client.user(self.login)
+    o = client.user(user.login)
 
     # The current user is updated in our database
-    self.github_id = o.id
-    self.avatar_url = o.avatar_url
-    self.gravatar_id = o.gravatar_id
-    self.url = o.url
-    self.company = o.company
-    self.blog = o.blog
-    self.location = o.location
-    self.email = o.email
-    self.hireable = o.hireable
-    self.bio = o.bio
-    self.public_repos = o.public_repos
-    self.public_gists = o.public_gists
-    self.followers = o.followers
-    self.following = o.following
-    self.html_url = o.html_url
-    self.github_profile_created_at = o.created_at
-    self.type = o.type
-    self.followers_url = o.followers_url
-    self.following_url = o.following_url
-    self.starred_url = o.starred_url
-    self.subscriptions_url = o.subscriptions_url
-    self.organizations_url = o.organizations_url
+    user.github_id = o.id
+    user.avatar_url = o.avatar_url
+    user.gravatar_id = o.gravatar_id
+    user.url = o.url
+    user.company = o.company
+    user.blog = o.blog
+    user.location = o.location
+    user.email = o.email
+    user.hireable = o.hireable
+    user.bio = o.bio
+    user.public_repos = o.public_repos
+    user.public_gists = o.public_gists
+    user.followers = o.followers
+    user.following = o.following
+    user.html_url = o.html_url
+    user.github_profile_created_at = o.created_at
+    user.type = o.type
+    user.followers_url = o.followers_url
+    user.following_url = o.following_url
+    user.starred_url = o.starred_url
+    user.subscriptions_url = o.subscriptions_url
+    user.organizations_url = o.organizations_url
   end
 
-  def get_followed_users(client)
+  def get_followed_users(client, user=self)
     # Octokit client grabs array of followed users
-    array = client.following(self.login)
+    array = client.following(user.login)
+    
+    # This object is used to create follower-followed associations
+    association = user.followed_users
 
     array.each do |f|
       # Add followed users to the FollowedUsers table
       followed = FollowedUser.find_or_create_by_login(f.login)
       followed.save
 
-      # Create the association in the FollowedUsersUsers table
-      association = self.followed_users
+      # Create the associations in the FollowedUsersUsers 
       association << followed unless association.exists?(followed) 
     end
+  end
+
+  def get_starred_repos(client, user=self)
+    # Octokit client grabs array of starred repos
+    array = client.starred(user.login)
+
+
+  end
+
+  def get_recommendations(client, user=self)
+    # Create array of 2nd-degree followed users 
+
+    # Create array of starred repos from 1st- and 2nd-degree followed 
+    # users
+
+    # Tally up the totals and sort recommendations
+
   end
 end

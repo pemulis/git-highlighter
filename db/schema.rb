@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512011913) do
+ActiveRecord::Schema.define(:version => 20130512205532) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +32,48 @@ ActiveRecord::Schema.define(:version => 20130512011913) do
   end
 
   add_index "followed_users_users", ["user_id", "followed_user_id"], :name => "index_users_followed_users_on_user_id_and_followed_user_id", :unique => true
+
+  create_table "starred_repos", :force => true do |t|
+    t.integer  "github_id"
+    t.string   "owner_login"
+    t.integer  "owner_github_id"
+    t.string   "owner_avatar_url"
+    t.string   "owner_gravatar_id"
+    t.string   "owner_url"
+    t.string   "name"
+    t.string   "full_name"
+    t.string   "description"
+    t.boolean  "private"
+    t.boolean  "fork"
+    t.string   "url"
+    t.string   "html_url"
+    t.string   "clone_url"
+    t.string   "git_url"
+    t.string   "ssh_url"
+    t.string   "svn_url"
+    t.string   "mirror_url"
+    t.string   "homepage"
+    t.string   "language"
+    t.integer  "forks"
+    t.integer  "forks_count"
+    t.integer  "watchers"
+    t.integer  "watchers_count"
+    t.integer  "size"
+    t.string   "master_branch"
+    t.integer  "open_issues"
+    t.string   "pushed_at"
+    t.string   "github_created_at"
+    t.string   "github_updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "starred_repos_users", :id => false, :force => true do |t|
+    t.integer "user_id",         :null => false
+    t.integer "starred_repo_id", :null => false
+  end
+
+  add_index "starred_repos_users", ["starred_repo_id", "user_id"], :name => "index_starred_repos_users_on_starred_repo_id_and_user_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"
