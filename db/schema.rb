@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512205532) do
+ActiveRecord::Schema.define(:version => 20130513023200) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(:version => 20130512205532) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  add_index "starred_repos", ["full_name"], :name => "index_starred_repos_on_full_name"
 
   create_table "starred_repos_users", :id => false, :force => true do |t|
     t.integer "user_id",         :null => false

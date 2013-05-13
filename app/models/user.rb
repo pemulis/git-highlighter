@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
       followed = FollowedUser.find_or_create_by_login(f.login)
       followed.save
 
-      # Create the associations in the FollowedUsersUsers 
+      # Create the association with the user
       association << followed unless association.exists?(followed) 
     end
   end
@@ -127,7 +127,17 @@ class User < ActiveRecord::Base
     # Octokit client grabs array of starred repos
     array = client.starred(user.login)
 
+    # This object is used to create User-StarredRepo associations
+    association = user.starred_repos
 
+    array.each do |a|
+      starred = StarredRepo.find_or_create_by_full_name(a.full_name)
+      starred.get_repo_data(client)
+      starred.save
+
+      # Create the association with the user
+      association << starred unless association.exists?(starred)  
+    end
   end
 
   def get_recommendations(client, user=self)
