@@ -140,13 +140,31 @@ class User < ActiveRecord::Base
     end
   end
 
-  def get_recommendations(client, user=self)
-    # Create array of 2nd-degree followed users 
+  def recommendations(client, user=self)
+    # Find people the user should follow
+    second_degree_followed = []
+    followed = user.followed_users
+    followed.each do |f|
+      new_user = User.find_or_create_by_login(f.login)
+      new_user.save
+      new_user.get_followed_users(client)
+      new_user.followed_users.each do |n|
+        second_degree_followed << n.login
+      end
+    end
+    
+    # Find repos the user should look at
+    second_degree_starred = []
+    followed = user.followed_users
+    followed.each do |f|
+      followed_user = User.find_by_login(f.login)
+      followed_user.get_starred_repos(client)
+      followed_user.starred_repos.each do |s|
+        second_degree_starred << s.full_name
+      end
+    end
 
-    # Create array of starred repos from 1st- and 2nd-degree followed 
-    # users
-
-    # Tally up the totals and sort recommendations
+    # Sort the recommendations
 
   end
 end

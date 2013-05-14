@@ -4,12 +4,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # TODO:
-    #
-    # * Analyze followed users' starred repos, as well as the users
-    #   they themselves follow 
-    # * Cache results of the analysis
-    # * Show cached results if less than 24 hours old 
   end
 
   def update

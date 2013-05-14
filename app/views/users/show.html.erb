@@ -21,13 +21,24 @@
 <h2>Created At:</h2>
 <p><%= current_user.github_profile_created_at %></p>
 
-<h2>Following URL:</h2>
-<p><%= current_user.following_url %></p>
-
 <h2>Following:</h2>
 <ul>
 <% current_user.followed_users.each do |f| %>
   <li><%= f.login %></li>
+<% end %>
+</ul>
+
+<h2>Starred:</h2>
+<ul>
+<% current_user.starred_repos.each do |s| %>
+  <li><%= s.full_name %></li>
+<% end %>
+</ul>
+
+<h2>Recommendations:</h2>
+<ul>
+<% current_user.recommendations.each do |r| %>
+  <li><% # something %></li>
 <% end %>
 </ul>
 
