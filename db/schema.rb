@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513023200) do
+ActiveRecord::Schema.define(:version => 20130516183354) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(:version => 20130513023200) do
   end
 
   add_index "followed_users_users", ["user_id", "followed_user_id"], :name => "index_users_followed_users_on_user_id_and_followed_user_id", :unique => true
+
+  create_table "recommendations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "score"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "starred_repos", :force => true do |t|
     t.integer  "github_id"

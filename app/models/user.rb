@@ -35,6 +35,7 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :followed_users, uniq: true
   has_and_belongs_to_many :starred_repos, uniq: true
+  has_many :recommendations, dependent: :destroy
   attr_accessible :login
 
   extend FriendlyId
@@ -140,7 +141,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def recommendations(client, user=self)
+  def get_recommendations(client, user=self)
     # Find people the user should follow
     second_degree_followed = []
     followed = user.followed_users
@@ -165,6 +166,10 @@ class User < ActiveRecord::Base
     end
 
     # Sort the recommendations
-
+    recs = second_degree_followed + second_degree_starred
+    scored = recs.each_with_object(Hash.new(0)) do |r, h|
+      h[r] += 1
+    end
+    scored = score.sort_by { |k, v| v }
   end
 end
