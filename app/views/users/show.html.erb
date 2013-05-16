@@ -37,9 +37,8 @@
 
 <h2>Recommendations:</h2>
 <ul>
-<% recommendations = current_user.recommendations(client) %>
-<% recommendations.each do |r| %>
-  <li><%= r %></li>
+<% current_user.recommendations.each do |r| %>
+  <li><%= r.name %></li>
 <% end %>
 </ul>
 

@@ -165,11 +165,17 @@ class User < ActiveRecord::Base
       end
     end
 
-    # Sort the recommendations
+    # Score and save the recommendations
     recs = second_degree_followed + second_degree_starred
+
     scored = recs.each_with_object(Hash.new(0)) do |r, h|
       h[r] += 1
     end
-    scored = score.sort_by { |k, v| v }
+
+    scored.each do |k, v|
+      rec = user.recommendations.find_or_create_by_name(k)
+      rec.score = v
+      rec.save
+    end
   end
 end

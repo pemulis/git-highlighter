@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516183354) do
+ActiveRecord::Schema.define(:version => 20130516225422) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20130516183354) do
     t.string   "owner_url"
     t.string   "name"
     t.string   "full_name"
-    t.string   "description"
+    t.text     "description"
     t.boolean  "private"
     t.boolean  "fork"
     t.string   "url"
