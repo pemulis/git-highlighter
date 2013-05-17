@@ -11,6 +11,8 @@ gem 'figaro'
 gem 'friendly_id', '~> 4.0.9'
 gem 'rest-client'
 gem 'omniauth-github'
+gem 'unicorn'
+gem 'rack-timeout'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

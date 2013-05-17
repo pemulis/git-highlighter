@@ -133,7 +133,8 @@ class User < ActiveRecord::Base
 
     array.each do |a|
       starred = StarredRepo.find_or_create_by_full_name(a.full_name)
-      starred.get_repo_data(client)
+      # move this to a background process
+      # starred.get_repo_data(client)
       starred.save
 
       # Create the association with the user
