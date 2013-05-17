@@ -11,7 +11,7 @@
 #  owner_url         :string(255)
 #  name              :string(255)
 #  full_name         :string(255)
-#  description       :string(255)
+#  description       :text
 #  private           :boolean
 #  fork              :boolean
 #  url               :string(255)

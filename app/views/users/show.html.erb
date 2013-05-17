@@ -37,8 +37,11 @@
 
 <h2>Recommendations:</h2>
 <ul>
-<% current_user.recommendations.each do |r| %>
-  <li><%= r.name %></li>
+<% recs = current_user.recommendations.sort_by { |r| r.score }.reverse! %>
+<% recs.each do |r| %>
+  <% if r.score > 1 %>
+    <li><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %></li>
+  <% end %>
 <% end %>
 </ul>
 

@@ -2,12 +2,14 @@
 #
 # Table name: recommendations
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  name       :string(255)
-#  score      :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  user_id     :integer
+#  name        :string(255)
+#  score       :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  type        :string(255)
+#  description :text
 #
 
 class Recommendation < ActiveRecord::Base
