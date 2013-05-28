@@ -6,35 +6,6 @@
 
 <%= link_to "Refresh?", user_path(current_user), method: :put %>
 
-<h2>Login:</h2>
-<p><%= current_user.login %></p>
-
-<h2>ID:</h2>
-<p><%= current_user.id %></p>
-
-<h2>Location:</h2>
-<p><%= current_user.location %></p>
-
-<h2>Hireable:</h2>
-<p><%= current_user.hireable %></p>
-
-<h2>Created At:</h2>
-<p><%= current_user.github_profile_created_at %></p>
-
-<h2>Following:</h2>
-<ul>
-<% current_user.followed_users.each do |f| %>
-  <li><%= f.login %></li>
-<% end %>
-</ul>
-
-<h2>Starred:</h2>
-<ul>
-<% current_user.starred_repos.each do |s| %>
-  <li><%= s.full_name %></li>
-<% end %>
-</ul>
-
 <h2>Recommendations:</h2>
 <ul>
 <% recs = current_user.recommendations.sort_by { |r| r.score }.reverse! %>
