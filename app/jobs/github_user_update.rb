@@ -1,5 +1,5 @@
 class GithubUserUpdate < ActiveRecord::Base
-  extend HerokuAutoScaler::AutoScaling
+  extend HerokuAutoScaler::AutoScaling 
 
   def self.queue
     # Is this going to be the ENV['QUEUE'] variable?
