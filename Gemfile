@@ -14,6 +14,7 @@ gem 'omniauth-github'
 gem 'unicorn'
 gem 'rack-timeout'
 gem 'resque', '~> 1.22.0'
+gem 'heroku'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
