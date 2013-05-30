@@ -17,7 +17,7 @@ module GithubHighlighter
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(
-      #{config.root}/lib/assets/*.rb
+      #{config.root}/lib/heroku_resque_autoscaler.rb
     )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
