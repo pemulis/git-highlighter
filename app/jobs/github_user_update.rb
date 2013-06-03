@@ -29,8 +29,6 @@ class GithubUserUpdate < ActiveRecord::Base
 
   # for worker scaling
   extend HerokuAutoScaler::AutoScaling
-  # include current_user helper method
-  helper_method :current_user
 
   def self.queue
     :user_update
