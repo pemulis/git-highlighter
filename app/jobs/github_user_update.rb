@@ -36,7 +36,8 @@ class GithubUserUpdate < ActiveRecord::Base
     :user_update
   end
 
-  def self.perform(client)
+  def self.perform(client, user_id)
+    @current_user = User.find(user_id)
     current_user.get_user_data(client)
     current_user.get_followed_users(client)
     current_user.get_starred_repos(client)
@@ -44,11 +45,5 @@ class GithubUserUpdate < ActiveRecord::Base
 
     current_user.save
     # include something that tells users#updating that the job is done
-  end
-
-  private
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 end
