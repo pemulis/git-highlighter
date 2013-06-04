@@ -35,7 +35,7 @@ class GithubUserUpdate < ActiveRecord::Base
   end
 
   def self.perform(client, user_id)
-    @current_user = User.find(user_id)
+    current_user = User.find(user_id)
     current_user.get_user_data(client)
     current_user.get_followed_users(client)
     current_user.get_starred_repos(client)
