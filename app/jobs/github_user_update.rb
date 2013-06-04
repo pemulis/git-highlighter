@@ -34,7 +34,8 @@ class GithubUserUpdate < ActiveRecord::Base
     :user_update
   end
 
-  def self.perform(client, user_id)
+  def self.perform(oauth_token, login, user_id)
+    client = Octokit::Client.new(login: login, oauth_token: oauth_token)
     current_user = User.find(user_id)
     current_user.get_user_data(client)
     current_user.get_followed_users(client)

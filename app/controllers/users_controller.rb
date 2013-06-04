@@ -7,11 +7,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    client = Octokit::Client.new(login: current_user.login, 
-                                 oauth_token: session[:oauth_token])
+    oauth_token = session[:oauth_token]
+    login = current_user.login
     user_id = current_user.id
-
-    Resque.enqueue(GithubUserUpdate, client, user_id)
+    Resque.enqueue(GithubUserUpdate, oauth_token, login, user_id)
     redirect_to action: 'updating' 
   end
 
