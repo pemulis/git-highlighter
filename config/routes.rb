@@ -4,10 +4,11 @@ GithubHighlighter::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/signout' => 'sessions#destroy', as: :signout
-
   match '/updating' => 'users#updating', as: :updating
 
   resources :users, only: [:index, :show, :update]
+
+  mount Resque::Server, at: "/resque"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
