@@ -56,7 +56,7 @@ module HerokuAutoScaler
   end
 
   def heroku_workers=(qty)
-    heroku.ps_scale(ENV['HEROKU_APP'], {type: "worker", qty: qty}) if heroku
+    heroku.ps_scale(ENV['HEROKU_APP'], {type: "resque", qty: qty}) if heroku
   end
 
   def job_count
