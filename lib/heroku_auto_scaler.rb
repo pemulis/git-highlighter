@@ -62,7 +62,7 @@ module HerokuAutoScaler
   end
 
   def job_count
-    Resque.info[:pending] + Resque.info[:working]
+    Resque.info[:pending]
   end
 
   def resque_workers
