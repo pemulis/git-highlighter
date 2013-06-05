@@ -1,6 +1,4 @@
 class GithubUserUpdate < ActiveRecord::Base
-  # for worker scaling
-  # extend HerokuAutoScaler::AutoScaling
   require 'resque/errors'
 
   def self.queue
