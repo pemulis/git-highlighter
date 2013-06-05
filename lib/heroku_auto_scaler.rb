@@ -41,6 +41,7 @@ module HerokuAutoScaler
     return if ignore_scaling
     pending = job_count
     self.heroku_workers = workers_for(pending) if pending > 0
+    Rails.logger.info "Scale up j:#{pending} w:#{resque_workers}"
   end
 
   private
