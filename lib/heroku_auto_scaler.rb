@@ -49,14 +49,14 @@ module HerokuAutoScaler
 
   def heroku
     if ENV['HEROKU_USER'] && ENV['HEROKU_PASSWORD'] && ENV['HEROKU_APP']
-      @heroku ||= Heroku::Client.new(ENV['HEROKU_USER'], ENV['HEROKU_PASSWORD'])
+      @heroku ||= Heroku::API.new(username: ENV['HEROKU_USER'], password: ENV['HEROKU_PASSWORD'])
     else
       false
     end
   end
 
   def heroku_workers=(qty)
-    heroku.ps_scale(ENV['HEROKU_APP'], {type: "worker", qty: qty}) if heroku
+    heroku.post_ps_scale(ENV['HEROKU_APP'], "worker", qty) if heroku
   end
 
   def job_count
