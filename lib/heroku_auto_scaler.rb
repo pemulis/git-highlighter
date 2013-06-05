@@ -33,9 +33,9 @@ module HerokuAutoScaler
   end
 
   def scale_down!(&block)
+    sleep 10
     Rails.logger.info "Scale down j:#{job_count} w:#{resque_workers}"
-    sleep(10)
-    self.heroku_workers = 0 if job_count == 0 && resque_workers == 1 
+    self.heroku_workers = 0 if job_count == 0 
   end
 
   def scale_up!(&block)
@@ -58,15 +58,15 @@ module HerokuAutoScaler
   end
 
   def heroku_workers=(qty)
-    heroku.post_ps_scale(ENV['HEROKU_APP'], "worker", qty) if heroku
+    heroku.post_ps_scale(ENV['HEROKU_APP'], "resque", qty) if heroku
   end
 
   def job_count
-    Resque.info[:pending] + Resque.info[:working]
+    Resque.info[:pending]
   end
 
   def resque_workers
-    Resque.info[:workers]
+    Resque.info[:working]
   end
 
   def workers_for(pending_jobs)
