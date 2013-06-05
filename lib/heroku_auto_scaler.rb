@@ -1,4 +1,4 @@
-require 'heroku'
+require 'heroku-api'
 
 module HerokuAutoScaler
   module AutoScaling
