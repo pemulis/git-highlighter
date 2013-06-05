@@ -1,6 +1,7 @@
 class GithubUserUpdate < ActiveRecord::Base
   # for worker scaling
   extend HerokuAutoScaler::AutoScaling
+  require 'resque/errors'
 
   def self.queue
     :user_update
@@ -16,5 +17,7 @@ class GithubUserUpdate < ActiveRecord::Base
 
     current_user.save
     # include something that tells users#updating that the job is done
+  rescue Resque::TermException
+    Resque.enqueue(self, login, oauth_token)
   end
 end
