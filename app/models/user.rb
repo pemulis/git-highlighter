@@ -105,6 +105,8 @@ class User < ActiveRecord::Base
     user.starred_url = o.starred_url
     user.subscriptions_url = o.subscriptions_url
     user.organizations_url = o.organizations_url
+
+    user.save
   end
 
   def get_followed_users(client, user=self)
