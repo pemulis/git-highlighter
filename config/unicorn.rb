@@ -1,18 +1,14 @@
 # Unicorn Server Config
 
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
-timeout 15 
+timeout 30 
 preload_app true
 
 before_fork do |server, worker|
-
-  Signal.trap 'TERM' do
-    puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
-    Process.kill 'QUIT', Process.pid
-  end
-
-  defined?(ActiveRecord::Base) and
+  if defined?(ActiveRecord::Base)
     ActiveRecord::Base.connection.disconnect!
+    Rails.logger.info('Disconnected from ActiveRecord')
+  end
 
   if defined?(Resque)
     Resque.redis.quit
@@ -21,13 +17,10 @@ before_fork do |server, worker|
 end 
 
 after_fork do |server, worker|
-
-  Signal.trap 'TERM' do
-    puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
-  end
-
-  defined?(ActiveRecord::Base) and
+  if defined?(ActiveRecord::Base)
     ActiveRecord::Base.establish_connection
+    Rails.logger.info('Connected to ActiveRecord')
+  end
 
   if defined?(Resque)
     Resque.redis = ENV['REDISTOGO_URL']

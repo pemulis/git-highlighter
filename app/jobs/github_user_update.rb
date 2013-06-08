@@ -17,6 +17,6 @@ class GithubUserUpdate < ActiveRecord::Base
 
 
   rescue Resque::TermException
-    Resque.enqueue(self, login, oauth_token)
+    Resque.enqueue(GithubUserUpdate, login, oauth_token)
   end
 end
