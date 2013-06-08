@@ -6,13 +6,32 @@
 
 <%= link_to "Refresh?", user_path(current_user), method: :put %>
 
+<h2>Company:</h2>
+<p><%= current_user.company %></p>
+
 <h2>Recommendations:</h2>
 <ul>
 <% recs = current_user.recommendations.sort_by { |r| r.score }.reverse! %>
 <% recs.each do |r| %>
-  <% if r.score > 1 %>
+  <% if r.score > 0 %>
     <li><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %></li>
   <% end %>
+<% end %>
+</ul>
+
+<h2>Following:</h2>
+<ul>
+<% following = current_user.followed_users %>
+<% following.each do |f| %>
+  <li><%= f.login %></li>
+<% end %>
+</ul>
+
+<h2>Starred:</h2>
+<ul>
+<% starred = current_user.starred_repos %>
+<% starred.each do |s| %>
+  <li><%= s.full_name %></li>
 <% end %>
 </ul>
 
