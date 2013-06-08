@@ -23,7 +23,7 @@
 <ul>
 <% following = current_user.followed_users %>
 <% following.each do |f| %>
-  <li><%= f.login %></li>
+  <li><a href="https://github.com/<%= f.login %>"><%= f.login %></a></li>
 <% end %>
 </ul>
 
@@ -31,7 +31,7 @@
 <ul>
 <% starred = current_user.starred_repos %>
 <% starred.each do |s| %>
-  <li><%= s.full_name %></li>
+  <li><a href="https://github.com/<%= s.full_name %>"><%= s.full_name %></a></li>
 <% end %>
 </ul>
 
