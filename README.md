@@ -4,7 +4,7 @@ Git Highlighter shows you repos you might find interesting, based on your social
 
 # Is It Live Yet?
 
-Nope! There are still important pieces that I need to build out before I can share this app with the world.
+[Sort of?](http://git-highlighter.herokuapp.com "you may have to wait some time for me to launch a resque worker")
 
 # Anything Else I Should Know? 
 
