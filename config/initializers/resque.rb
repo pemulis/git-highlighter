@@ -1,3 +1,2 @@
-uri = URI.parse(ENV["REDISTOGO_URL"])
-Resque.redis = Redis.new(host: uri.host, port: uri.port, password: uri.password, thread_safe: true)
+Resque.redis = REDIS_WORKER
 Dir["#{Rails.root}/app/jobs/*.rb"].each { |file| require file }
