@@ -193,11 +193,11 @@ class User < ActiveRecord::Base
       # Assign score and other information
       rec.score = v
       if /\//.match(k)
-        rec.type = "repo"
+        rec.rec_type = "repo"
         repo = StarredRepo.find_by_full_name(k)
         rec.description = repo.description
       else
-        rec.type = "user"
+        rec.rec_type = "user"
       end
       rec.save
     end
