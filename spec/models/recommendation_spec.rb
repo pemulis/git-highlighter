@@ -8,7 +8,7 @@
 #  score       :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  type        :string(255)
+#  rec_type    :string(255)
 #  description :text
 #
 
