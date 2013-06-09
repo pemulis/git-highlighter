@@ -177,7 +177,7 @@ class User < ActiveRecord::Base
     scored.each do |k, v|
       rec = user.recommendations.find_or_create_by_name(k)
       rec.score = v
-      if /*\/*/.match(k)
+      if /\//.match(k)
         rec.type = "repo"
         repo = StarredRepo.find_by_full_name(k)
         rec.description = repo.description
