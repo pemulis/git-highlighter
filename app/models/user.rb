@@ -187,7 +187,7 @@ class User < ActiveRecord::Base
       repo = StarredRepo.find_by_full_name(k)
       other_user = FollowedUser.find_by_login(k)
       if user.starred_repos.exists?(repo) or user.followed_users.exists?(other_user)
-        rec.destroy! and next
+        rec.destroy and next
       end
 
       # Assign score and other information
