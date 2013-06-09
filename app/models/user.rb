@@ -170,12 +170,27 @@ class User < ActiveRecord::Base
     # Score and save the recommendations
     recs = second_degree_followed + second_degree_starred
 
+    recs.delete_if do |r|
+      user.starred_repos.exists?(r) or user.followed_users.exists?(r)
+    end
+
     scored = recs.each_with_object(Hash.new(0)) do |r, h|
       h[r] += 1
     end
 
     scored.each do |k, v|
+      # Create the recommendation
       rec = user.recommendations.find_or_create_by_name(k)
+
+      # Destroy recommendations where the user has already starred 
+      # the repo or followed the other user
+      repo = StarredRepo.find_by_full_name(k)
+      other_user = FollowedUser.find_by_login(k)
+      if user.starred_repos.exists?(repo) or user.followed_users.exists?(other_user)
+        rec.destroy! and next
+      end
+
+      # Assign score and other information
       rec.score = v
       if /\//.match(k)
         rec.type = "repo"
