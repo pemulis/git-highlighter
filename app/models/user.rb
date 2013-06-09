@@ -135,8 +135,7 @@ class User < ActiveRecord::Base
 
     array.each do |a|
       starred = StarredRepo.find_or_create_by_full_name(a.full_name)
-      # move this to a background process
-      # starred.get_repo_data(client)
+      starred.get_repo_data(client)
       starred.save
 
       # Create the association with the user
@@ -178,6 +177,13 @@ class User < ActiveRecord::Base
     scored.each do |k, v|
       rec = user.recommendations.find_or_create_by_name(k)
       rec.score = v
+      if /*\/*/.match(k)
+        rec.type = "repo"
+        repo = StarredRepo.find_by_full_name(k)
+        rec.description = repo.description
+      else
+        rec.type = "user"
+      end
       rec.save
     end
   end
