@@ -31,7 +31,7 @@
 <% starred = current_user.starred_repos %>
 <% starred.each do |s| %>
   <h3><a href="https://github.com/<%= s.full_name %>"><%= s.full_name %></a></h3>
-  <p>Owned by <%= s.owner %></p>
+  <p>Owned by <%= s.owner_login %></p>
   <p><%= s.description %></p>
 <% end %>
 
