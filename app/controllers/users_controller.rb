@@ -9,13 +9,16 @@ class UsersController < ApplicationController
   def update
     login = current_user.login
     oauth_token = session[:oauth_token]
-    Resque.enqueue(GithubUserUpdate, login, oauth_token)
-    redirect_to action: 'updating' 
+    update_job_id = GithubUserUpdate.create(login: login, oauth_token: oauth_token)
+    session[:update_job_id] = update_job_id
+    # Resque.enqueue(GithubUserUpdate, login, oauth_token)
+    redirect_to action: 'updating'
   end
 
   def updating
-    # after the resque job finishes, and 
-    # user recommendations are updated...
-    # redirect_to root_url
+    while status = Resque::Plugins::Status::Hash.get(session[:update_job_id]) and !status.completed? and !status.failed?
+      sleep 1
+    end
+    redirect_to root_url 
   end
 end
