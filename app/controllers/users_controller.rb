@@ -16,9 +16,8 @@ class UsersController < ApplicationController
   end
 
   def updating
-    while status = Resque::Plugins::Status::Hash.get(session[:update_job_id]) and !status.completed? and !status.failed?
-      sleep 1
-    end
-    redirect_to root_url 
+    # while status = Resque::Plugins::Status::Hash.get(session[:update_job_id]) and !status.completed? and !status.failed?
+    #   sleep 1
+    # end
   end
 end
