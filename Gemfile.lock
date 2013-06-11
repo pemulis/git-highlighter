@@ -213,7 +213,6 @@ DEPENDENCIES
   pg
   rack-timeout
   rails (= 3.2.11)
-  resque (~> 1.22.0)
   resque-status
   rest-client
   rspec-rails (~> 2.0)
