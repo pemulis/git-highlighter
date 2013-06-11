@@ -8,8 +8,6 @@ GithubHighlighter::Application.routes.draw do
 
   resources :users, only: [:index, :show, :update]
 
-  mount Resque::Server, at: "/resque"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
