@@ -1,6 +1,6 @@
 class GithubUserUpdate < ActiveRecord::Base
   require 'resque/errors'
-  include Resque::Plugins::Status
+  require 'resque/job_with_status'
 
   @queue = :user_update
 
