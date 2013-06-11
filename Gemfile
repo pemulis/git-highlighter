@@ -13,7 +13,6 @@ gem 'rest-client'
 gem 'omniauth-github'
 gem 'unicorn'
 gem 'rack-timeout'
-gem 'resque', '~> 1.22.0', require: 'resque/server'
 gem 'resque-status'
 gem 'heroku-api'
 
