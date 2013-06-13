@@ -119,6 +119,8 @@ class User < ActiveRecord::Base
     array.each do |f|
       # Add followed users to the FollowedUsers table
       followed = FollowedUser.find_or_create_by_login(f.login)
+      followed.avatar_url = f.avatar_url
+      followed.gravatar_id = f.gravatar_id
       followed.save
 
       # Create the association with the user
