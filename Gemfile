@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
+'ruby' '2.0.0'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem 'octokit', '~> 1.24.0'
 gem 'unicorn'
 gem 'jquery-rails'
@@ -15,9 +16,6 @@ gem 'unicorn'
 gem 'rack-timeout'
 gem 'resque-status'
 gem 'heroku-api'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :test do
   gem 'rspec-rails', '~> 2.0'
@@ -36,15 +34,8 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
 
 # To use debugger
 # gem 'debugger'
