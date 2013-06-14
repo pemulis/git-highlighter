@@ -1,0 +1,37 @@
+<% if current_user %>
+
+<p>Welcome, <%= current_user.login %>!</p>
+
+<h2>Company</h2>
+<p><%= current_user.company %></p>
+
+<h2>Recommendations</h2>
+<% recs = current_user.recommendations.sort_by { |r| r.score }.reverse! %>
+<% recs.each do |r| %>
+  <% if r.score > 0 %>
+    <h3><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %></h3>
+    <p><%= r.description %></p>
+  <% end %>
+<% end %>
+
+<h2>Following</h2>
+<ul>
+<% following = current_user.followed_users %>
+<% following.each do |f| %>
+  <li><a href="https://github.com/<%= f.login %>"><%= f.login %></a></li>
+<% end %>
+</ul>
+
+<h2>Starred</h2>
+<% starred = current_user.starred_repos %>
+<% starred.each do |s| %>
+  <h3><a href="https://github.com/<%= s.full_name %>"><%= s.full_name %></a></h3>
+  <p>Owned by <%= s.owner_login %></p>
+  <p><%= s.description %></p>
+<% end %>
+
+<% if current_user %>
+  <%= link_to "Sign Out", signout_path %>
+<% end %>
+
+<% end %>
