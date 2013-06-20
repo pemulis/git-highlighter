@@ -6,7 +6,7 @@
 <p><%= current_user.company %></p>
 
 <h2>Recommendations</h2>
-<% recs = current_user.recommendations.where(hidden: true).sort_by { |r| r.score }.reverse! %>
+<% recs = current_user.recommendations.where(hidden: false).sort_by { |r| r.score }.reverse! %>
 <% recs.each do |r| %>
   <% if r.score > 0 %>
     <h3><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %> <%= button_to "not interested", recommendation_path(r.id), method: :delete, class: "not-interested" %></h3>
