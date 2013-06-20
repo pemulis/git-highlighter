@@ -3,7 +3,9 @@ class RecommendationsController < ApplicationController
   end
 
   def destroy
-    Recommendation.destroy(params[:id])
-    redirect_to root_url
+    if @rec = Recommendation.find(params[:id])
+      @rec.destroy 
+      redirect_to root_url
+    end
   end
 end
