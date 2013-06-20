@@ -5,17 +5,19 @@
 <h2>Company</h2>
 <p><%= current_user.company %></p>
 
-<h2>Recommendations</h2>
-<% recs = current_user.recommendations.where(hidden: false).sort_by { |r| r.score }.reverse! %>
-<% recs.each do |r| %>
-  <% if r.score > 1 %>
-    <div class="recommendation">
-      <h3><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %></h3>
-      <p><%= r.description %></p>
-      <%= button_to "not interested", recommendation_path(r.id), method: :delete, class: "not-interested", remote: true %>
-    </div>
+<div id = "recommendations">
+  <h2>Recommendations</h2>
+  <% recs = current_user.recommendations.where(hidden: false).sort_by { |r| r.score }.reverse! %>
+  <% recs.each do |r| %>
+    <% if r.score > 1 %>
+      <div class="recommendation">
+        <h3><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %></h3>
+        <p><%= r.description %></p>
+        <%= button_to "not interested", recommendation_path(r.id), method: :delete, class: "not-interested", remote: true %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
 <% if current_user %>
   <%= link_to "Sign Out", signout_path %>

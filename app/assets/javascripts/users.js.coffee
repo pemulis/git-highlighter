@@ -4,6 +4,7 @@
 
 $ ->
   $(".not-interested").on("ajax:success", (e, data, status, xhr) ->
-    $(this).parent().hide()
+    $(this).parentsUntil("#recommendations").remove()
   ).bind "ajax:error", (e, xhr, status, error) ->
     $(this).parent().append "couldn't hide this for some reason"
+   $(this).parent().append "couldn't hide this for some reason"
