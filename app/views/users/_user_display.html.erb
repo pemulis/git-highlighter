@@ -9,7 +9,7 @@
 <% recs = current_user.recommendations.sort_by { |r| r.score }.reverse! %>
 <% recs.each do |r| %>
   <% if r.score > 0 %>
-    <h3><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %> <%= link_to "not interested", { controller: "recommendations", action: "destroy", id: r.id }, class: "not-interested" %></h3>
+    <h3><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %> <%= button_to "not interested", { controller: "recommendations", action: "destroy", id: r.id }, class: "not-interested" %></h3>
     <p><%= r.description %></p>
   <% end %>
 <% end %>
