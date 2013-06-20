@@ -12,7 +12,7 @@
     <div class="recommendation">
       <h3><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %></h3>
       <p><%= r.description %></p>
-      <p><%= button_to "not interested", recommendation_path(r.id), method: :delete, class: "not-interested" %></p>
+      <%= button_to "not interested", recommendation_path(r.id), method: :delete, class: "not-interested" %>
     </div>
   <% end %>
 <% end %>
