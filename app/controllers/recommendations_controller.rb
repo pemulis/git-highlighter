@@ -4,7 +4,7 @@ class RecommendationsController < ApplicationController
 
   def destroy
     if @rec = Recommendation.find(params[:id])
-      @rec.destroy 
+      @rec.hidden = true
       redirect_to root_url
     end
   end

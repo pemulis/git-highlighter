@@ -10,6 +10,7 @@
 #  updated_at  :datetime         not null
 #  rec_type    :string(255)
 #  description :text
+#  hidden      :boolean          default(FALSE)
 #
 
 class Recommendation < ActiveRecord::Base
