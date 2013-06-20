@@ -7,6 +7,7 @@ GithubHighlighter::Application.routes.draw do
   match '/updating' => 'users#updating', as: :updating
 
   resources :users, only: [:index, :show, :update]
+  resources :recommendations, only: [:destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
