@@ -11,8 +11,8 @@
   <% if r.score > 1 %>
     <div class="recommendation">
       <h3><a href="https://github.com/<%= r.name %>"><%= r.name %></a>: <%= r.score %></h3>
-      <p><%= r.description %></p>
       <%= button_to "not interested", recommendation_path(r.id), method: :delete, class: "not-interested" %>
+      <p><%= r.description %></p>
     </div>
   <% end %>
 <% end %>
