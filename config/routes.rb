@@ -5,6 +5,7 @@ GithubHighlighter::Application.routes.draw do
   match '/auth/:provider/callback' => 'sessions#create'
   match '/signout' => 'sessions#destroy', as: :signout
   match '/updating' => 'users#updating', as: :updating
+  match '/recommendations/:id' => 'recommendations#destroy', as: :destroy
 
   resources :users, only: [:index, :show, :update]
   resources :recommendations, only: [:destroy]
