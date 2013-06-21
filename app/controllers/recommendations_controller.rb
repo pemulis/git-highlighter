@@ -8,7 +8,7 @@ class RecommendationsController < ApplicationController
       
       respond_to do |format|
         if @rec.save
-          format.html { redirect_to root_url }
+          format.html { render root_url }
           format.js {}
           format.json { render json: @rec, status: :hidden, location: @rec }
         else
