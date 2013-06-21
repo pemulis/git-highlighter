@@ -1,4 +1,1 @@
-$(".not-interested").on("ajax:success", (e, data, status, xhr) ->
-  $(this).parentsUntil("#recommendations").remove()
-).bind "ajax:error", (e, xhr, status, error) ->
-  $(this).parent().append "couldn't hide this for some reason"
+$("<%= escape_javascript(redirect_to root_url) %>")
