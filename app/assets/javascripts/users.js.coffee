@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $(".not-interested").click ->
-    this.parentsUntil("#recommendations").hide()
+  $(".not-interested").on 'click', (event) =>
+    $(event.currentTarget).closest("#recommendation").hide()
