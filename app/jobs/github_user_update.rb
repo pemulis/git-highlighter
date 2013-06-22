@@ -14,12 +14,10 @@ class GithubUserUpdate
     current_user.get_starred_repos(client)
     current_user.get_recommendations(client)
     
-    # include something that tells users#updating that the job is done
     completed
 
   rescue Resque::TermException
     update_job_id = GithubUserUpdate.create(login: login, oauth_token: oauth_token)
     session[:update_job_id] = update_job_id
-    # Resque.enqueue(GithubUserUpdate, login, oauth_token)
   end
 end
