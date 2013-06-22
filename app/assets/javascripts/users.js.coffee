@@ -4,4 +4,4 @@
 
 $ ->
   $(".not-interested").on 'click', (event) =>
-    $(event.currentTarget).closest("#recommendation").hide()
+    $(event.currentTarget).closest(".recommendation").hide()
