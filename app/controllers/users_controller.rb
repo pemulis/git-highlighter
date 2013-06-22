@@ -15,5 +15,8 @@ class UsersController < ApplicationController
   end
 
   def updating
+    @job # = something 
+    # in_progress? method needs to be defined
+    # render action: 'show' unless @job.in_progress?
   end
 end
