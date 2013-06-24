@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
 
   def update_status
     hash = Resque::Plugins::Status::Hash.get(session[:update_job_id])
-    @update_status = hash.pct_complete
+    @update_status = hash.pct_complete unless hash.nil?
   end
 end
