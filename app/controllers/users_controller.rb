@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    update_status = status_hash.pct_complete unless status_hash.nil?
   end
 
   def update

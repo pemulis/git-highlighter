@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
-  helper_method :update_status
+  helper_method :status_hash
 
   private
 
@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def update_status
-    hash = Resque::Plugins::Status::Hash.get(session[:update_job_id])
-    @update_status = hash.pct_complete unless hash.nil?
+    @status_hash = Resque::Plugins::Status::Hash.get(session[:update_job_id]) if session[:update_job_id]
   end
 end
