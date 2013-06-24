@@ -2,6 +2,6 @@
 
 <%= link_to "Update recommendations?", user_path(current_user), method: :put %>
 
-<div id="update_status"><%= yield update_status unless update_status.nil? %></div>
+<div id="update_status"><%= render 'update_status' %></div>
 
 <div id="user_display"><%= render 'user_display' %></div>
