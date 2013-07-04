@@ -2,9 +2,6 @@
 
 <p>Welcome, <%= current_user.login %>!</p>
 
-<h2>Company</h2>
-<p><%= current_user.company %></p>
-
 <div id = "recommendations">
   <h2>Recommendations</h2>
   <% recs = current_user.recommendations.where(hidden: false).sort_by { |r| r.score }.reverse! %>

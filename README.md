@@ -4,7 +4,7 @@ Git Highlighter shows you repos you might find interesting, based on your social
 
 # Is It Live Yet?
 
-[Sort of!](http://git-highlighter.herokuapp.com) It takes a few minutes for the app to generate recommendations, since it has to make a lot of client calls to GitHub, and recommendations are custom-tailored to each user.
+[Sort of!](http://git-highlighter.herokuapp.com) It takes a few minutes for the app to generate recommendations, since it has to make a lot of client calls to GitHub and recommendations are custom-tailored to each user. I'm looking at ways to speed this up.
 
 # Anything Else I Should Know? 
 
