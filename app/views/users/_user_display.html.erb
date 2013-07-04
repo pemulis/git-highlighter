@@ -2,6 +2,8 @@
 
 <p>Welcome, <%= current_user.login %>!</p>
 
+<%= link_to "Update recommendations?", user_path(current_user), method: :put %>
+
 <div id = "recommendations">
   <h2>Recommendations</h2>
   <% recs = current_user.recommendations.where(hidden: false).sort_by { |r| r.score }.reverse! %>
