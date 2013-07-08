@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    render action: 'show' unless current_user.nil?
+    redirect_to action: 'show' unless current_user.nil?
   end
 
   def show
