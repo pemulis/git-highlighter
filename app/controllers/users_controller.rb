@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
   def index
-    redirect_to current_user unless current_user.nil?
+    render current_user unless current_user.nil?
   end
 
   def show
-    # update_status = status_hash.pct_complete unless status_hash.nil?
-    update_status = '25'
   end
 
   def update
