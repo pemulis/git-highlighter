@@ -14,6 +14,11 @@
         <p><%= r.description %></p>
         <%= button_to "not interested", recommendation_path(r.id), method: :delete, class: "not-interested", remote: true %>
       </div>
+    <% else %>
+      <div class = "no-recommendations">
+        <h3>:(</h3>
+        <p>You don't have any recommendations! Try following a few more people on <%= link_to "GitHub", "https://github.com" %>.</p>
+      </div>
     <% end %>
   <% end %>
 </div>
