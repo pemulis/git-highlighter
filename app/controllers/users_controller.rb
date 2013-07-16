@@ -7,16 +7,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    if session[:update_job_id].nil?
-      login = current_user.login
-      oauth_token = session[:oauth_token]
-      update_job_id = GithubUserUpdate.create(login: login, oauth_token: oauth_token)
-      session[:update_job_id] = update_job_id
-    end
-
     respond_to do |format|
       format.html { redirect_to root_url }
-      format.js {}
+      format.js {
+        if session[:update_job_id].nil?
+          login = current_user.login
+          oauth_token = session[:oauth_token]
+          update_job_id = GithubUserUpdate.create(login: login, oauth_token: oauth_token)
+          session[:update_job_id] = update_job_id
+        end
+      }
     end
   end
 end
