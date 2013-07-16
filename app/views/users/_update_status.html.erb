@@ -1,4 +1,6 @@
-<%= content_tag :div, id: 'update-status', 
+<%= content_tag :div, id: 'update-status',
                 data: { url: user_url(current_user) } do %>
-  <p>Update is <%= update_status %>% complete.</p>
+  <% unless update_status.nil? %>
+    <p>Update is <%= update_status %>% complete.</p>
+  <% end %>
 <% end %>
