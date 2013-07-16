@@ -17,5 +17,7 @@
 $ ->
   $(".not-interested").on 'click', (event) =>
     $(event.currentTarget).closest(".recommendation").hide()
+
+$ ->
   if $('#update-status').length > 0
     UpdatePoller.poll()
