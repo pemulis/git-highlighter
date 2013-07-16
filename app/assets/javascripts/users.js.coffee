@@ -9,7 +9,7 @@
     setTimeout @request, 1000
 
   request: ->
-    $.post($('#update-status').data('url'))
+    $.put($('#update-status').data('url'))
 
 # User can mark that they're not interested in a recommendation, and 
 # it will never appear again.
