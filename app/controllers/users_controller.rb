@@ -11,6 +11,9 @@ class UsersController < ApplicationController
     oauth_token = session[:oauth_token]
     update_job_id = GithubUserUpdate.create(login: login, oauth_token: oauth_token)
     session[:update_job_id] = update_job_id
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+    end
   end
 end
