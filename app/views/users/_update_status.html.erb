@@ -1,3 +1,4 @@
-<div id = 'update_status'>  
-  <p>Update is <%= update_status %>% complete</p>
-</div>
+<%= content_tag :div, id: 'update-status', 
+                data: { url: user_url(current_user) } do %>
+  <p>Update is <%= update_status %>% complete.</p>
+<% end %>
