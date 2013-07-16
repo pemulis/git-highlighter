@@ -7,10 +7,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if session[:update_job_id] == 100
-      session[:update_job_id] = nil
-
-    unless session[:update_job_id] do
+    if session[:update_job_id].nil?
       login = current_user.login
       oauth_token = session[:oauth_token]
       update_job_id = GithubUserUpdate.create(login: login, oauth_token: oauth_token)
@@ -19,7 +16,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to root_url }
-      format.js
+      format.js {}
     end
   end
 end
